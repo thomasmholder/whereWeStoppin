@@ -14,3 +14,6 @@ class Room:
     def generateid(self):
         # Generates 32 bit unique ID and parses the first 8 characters
         self.id = textwrap.shorten(str(uuid.uuid4()), width=8)
+
+    def addnewuser(self, person):
+        self.users.append(person)
