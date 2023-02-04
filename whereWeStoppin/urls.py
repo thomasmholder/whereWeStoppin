@@ -24,5 +24,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("create_room", roomsession.views.create_room, name="create_room"),
     path("join_room", roomsession.views.join_room, name="join_room"),
-    path("rooms/<room_id>", roomsession.views.access_room)
+    path("rooms/<room_id>", roomsession.views.access_room),
+    path("rooms/<room_id>/results", roomsession.views.access_room_results)
 ]

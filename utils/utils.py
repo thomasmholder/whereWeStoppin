@@ -1,4 +1,6 @@
-import textwrap
+import googlemaps
+from datetime import datetime
+import django.db.models
 
 import roomsession.models as models
 import uuid
@@ -23,3 +25,53 @@ def create_user_entry(room_id: str, user_name: str, user_latitude: float, user_l
     user_room = models.RoomEntry.objects.get(room_id=room_id)
     user_room.result_number += 1
     user_room.save()
+
+
+def should_compute(room_id: str) -> bool:
+    try:
+        room = models.RoomEntry.objects.all().filter(room_id=room_id)[0]
+    except django.db.models.Model.DoesNotExist:
+        return False
+
+    try:
+        people = models.UserEntry.objects.filter(room_id=room_id)
+    except models.UserEntry.DoesNotExist:
+        return False
+
+    if people.count() == 0:
+        return False
+
+    if people.count() == room.result_number:
+        return False
+
+    return True
+
+
+def get_midpoint(room_id: str) -> (float, float):
+    if not should_compute(room_id):
+        return 0.0, 0.0
+    latitudes = []
+    longitudes = []
+
+    people = models.UserEntry.objects.all().filter(room=room_id)
+
+    for person in people:
+        latitudes.append(person.latitude)
+        longitudes.append(person.longitude)
+
+    midpoint_lat = ((max(latitudes) - min(latitudes))/2) + min(latitudes)
+    midpoint_long = ((max(longitudes) - min(longitudes))/2) + min(longitudes)
+
+    return midpoint_lat, midpoint_long
+
+
+def da_algorithm(latitude: float, longitude: float, location_type: str) -> dict:
+    gmaps = googlemaps.Client(key='AIzaSyBkggWLN5cIFpGJ1IjNSuw7oKUHfo1U5HY')
+
+    response = gmaps.places_nearby(
+        location=(latitude, longitude),
+        keyword=location_type,
+        rank_by="distance"
+    )
+
+    return response['results'][0]['name']
