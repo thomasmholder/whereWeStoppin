@@ -1,0 +1,10 @@
+body {
+    background-color: #89CFF0;
+}
+
+.button {
+    background-color: #0096FF;
+    text-align: center;
+    text-color: white;
+    border: white;
+}
