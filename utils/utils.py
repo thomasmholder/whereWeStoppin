@@ -5,6 +5,8 @@ import django.db.models
 import roomsession.models as models
 import uuid
 
+RESTAURANT_PREFERENCES = ['American', 'Mexican', 'Chinese', 'Italian', 'Thai',
+                          'Pizza', 'Indian', 'Korean', 'Japanese', 'Fast Food']
 
 def create_room(room_type: str = None) -> str:
     new_room_id = str(uuid.uuid4())[0:8]
