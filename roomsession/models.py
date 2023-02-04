@@ -9,7 +9,7 @@ class RoomEntry(models.Model):
     room_id = models.CharField(max_length=8, primary_key=True)
     room_type = models.CharField(max_length=2, choices=ROOM_TYPES)
     result_number = models.IntegerField()
-    result_address = models.TextField()
+    result_address = models.TextField(null=True)
 
 
 class UserEntry(models.Model):
