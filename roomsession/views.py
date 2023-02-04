@@ -1,5 +1,8 @@
+import django.db.models
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
+
+import roomsession.models
 from roomsession.forms import JoinRoomForm, RoomCreationForm
 # Create your views here.
 import utils.utils
@@ -22,7 +25,7 @@ def create_room(request):
     if request.method == 'POST':
         form = RoomCreationForm(request.POST)
         if form.is_valid():
-            new_room_id = utils.utils.create_room()
+            new_room_id = utils.utils.create_room(form.cleaned_data['event_type'])
             return HttpResponseRedirect('/rooms/'+new_room_id)
         else:
             return HttpResponse("Invalid form, somehow")
@@ -40,4 +43,8 @@ def join_room(request):
 
 
 def access_room(request, room_id):
-    return HttpResponse(f"You are in room {room_id}")
+    try:
+        trip_type = roomsession.models.RoomEntry.objects.get(room_id=room_id).room_type
+    except django.db.models.Model.DoesNotExist:
+        trip_type = "None"
+    return HttpResponse(f"You are in room {room_id} of type {trip_type}")
