@@ -7,10 +7,9 @@
     <body>
 
         <h1>Where We Stopping?</h1>
-        <form action="{% url 'create_room_post' %}" method="post">
-            {% csrf_token %}
-            <input type="submit" name="create_room" value="Create a room!" />
-        </form>
+        <a href = {% url 'create_room' %}>
+            <button>Create a room!</button>
+        </a>
 
         <form action="{% url 'join_room' %}" method="post">
             {% csrf_token %}

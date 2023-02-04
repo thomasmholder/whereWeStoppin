@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="{% static 'roomsession/RoomCreation.css' %}">
+        <title>Room Creation</title>
+    </head>
+    <body>
+        <h1>Where We Stopping?</h1>
+
+        <form action="{% url 'create_room' %}" method="post">
+            {% csrf_token %}
+            {{ room_creation_form }}
+            <input type="submit" name="submit_join_room" value="Create room!" />
+        </form>
+    </body>
+</html>

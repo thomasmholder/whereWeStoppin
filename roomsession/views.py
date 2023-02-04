@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from roomsession.forms import JoinRoomForm
+from roomsession.forms import JoinRoomForm, RoomCreationForm
 # Create your views here.
 import utils.utils
 
@@ -18,12 +18,16 @@ def results_page(*args, **kwargs):
     return HttpResponse("<h1>Results!</h1>")
 
 
-def create_room_post(request):
-    return create_room()
-
-
-def create_room():
-    return HttpResponse("Welcome to room creation " + utils.utils.create_room())
+def create_room(request):
+    if request.method == 'POST':
+        form = RoomCreationForm(request.POST)
+        if form.is_valid():
+            new_room_id = utils.utils.create_room()
+            return HttpResponseRedirect('/rooms/'+new_room_id)
+        else:
+            return HttpResponse("Invalid form, somehow")
+    else:
+        return render(request, "RoomCreation.html", {'room_creation_form': RoomCreationForm})
 
 
 def join_room(request):

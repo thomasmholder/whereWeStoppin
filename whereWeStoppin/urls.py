@@ -22,7 +22,7 @@ from roomsession.views import landing_page, room_creation, preferences_selection
 urlpatterns = [
     path('', landing_page, name='home'),
     path('admin/', admin.site.urls),
-    path("create_room", roomsession.views.create_room_post, name="create_room_post"),
+    path("create_room", roomsession.views.create_room, name="create_room"),
     path("join_room", roomsession.views.join_room, name="join_room"),
     path("rooms/<room_id>", roomsession.views.access_room)
 ]
