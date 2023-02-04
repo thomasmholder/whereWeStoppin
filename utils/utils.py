@@ -5,9 +5,10 @@ import uuid
 
 
 def create_room() -> str:
-    new_room_id = textwrap.shorten(str(uuid.uuid4()), width=8)
+    new_room_id = str(uuid.uuid4())[0:8]
+    print(models.RoomEntry.objects.filter(room_id=new_room_id))
     if not models.RoomEntry.objects.filter(room_id=new_room_id):
-        new_room_entry = models.RoomEntry(room_id=new_room_id)
+        new_room_entry = models.RoomEntry(room_id=new_room_id, result_number=0)
         new_room_entry.save()
         return new_room_id
     else:

@@ -6,8 +6,15 @@
     <body>
 
         <h1>Where We Stopping?</h1>
-        <button type="button">Make a room</button>
-        <button type="button">Join a room</button>
+        <form action="{% url 'create_room_post' %}" method="post">
+            {% csrf_token %}
+            <input type="submit" name="create_room" value="Create a room!" />
+        </form>
 
+        <form action="{% url 'join_room' %}" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" name="submit_join_room" value="Join room!" />
+        </form>
     </body>
 </html>
