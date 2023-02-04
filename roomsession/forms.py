@@ -1,5 +1,5 @@
 from django import forms
-from models import RoomEntry
+from roomsession.models import RoomEntry
 
 
 class JoinRoomForm(forms.Form):
