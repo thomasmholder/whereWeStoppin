@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from roomsession.views import landing_page, room_creation, preferences_selection, results_page
 
 urlpatterns = [
+    path('', landing_page, name='home'),
     path('admin/', admin.site.urls),
 ]
