@@ -47,4 +47,5 @@ def access_room(request, room_id):
         trip_type = roomsession.models.RoomEntry.objects.get(room_id=room_id).room_type
     except django.db.models.Model.DoesNotExist:
         trip_type = "None"
-    return HttpResponse(f"You are in room {room_id} of type {trip_type}")
+
+    return render(request, "RestaurantPreferences.html", {'room_id': room_id, 'trip_type': trip_type})
