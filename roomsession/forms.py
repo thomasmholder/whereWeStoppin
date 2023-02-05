@@ -10,12 +10,11 @@ class JoinRoomForm(forms.Form):
 
 
 class RoomCreationForm(forms.Form):
-    event_type = forms.CharField(label="Where would you like to go",
-                                 widget=forms.RadioSelect(choices=RoomEntry.ROOM_TYPES))
+    event_type = forms.CharField(label="", widget=forms.RadioSelect(choices=RoomEntry.ROOM_TYPES))
 
 
 class UserCreationForm(forms.Form):
-    user_name = forms.CharField(label="Name")
-    address = forms.CharField(label="Address")
+    user_name = forms.CharField(label="Name", widget=forms.TextInput(attrs={'style': ''}))
+    address = forms.CharField(label="Street Address", widget=forms.TextInput(attrs={'style': ''}))
     preferences = forms.CharField(widget=forms.CheckboxSelectMultiple(choices=utils.utils.RESTAURANT_PREFERENCES))
 
