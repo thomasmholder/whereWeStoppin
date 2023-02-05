@@ -107,7 +107,7 @@ def get_ideal_location_type(room_id: str) -> str:
 
 
 def da_algorithm(latitude: float, longitude: float, location_type: str) -> str:
-    gmaps = googlemaps.Client(key='AIzaSyBkggWLN5cIFpGJ1IjNSuw7oKUHfo1U5HY')
+    gmaps = googlemaps.Client(key='AIzaSyCt1LvRCpDQAdK_J3hwse0QRzLv8UCqlL4')
 
     response = gmaps.places_nearby(
         location=(latitude, longitude),
@@ -122,7 +122,7 @@ def da_algorithm(latitude: float, longitude: float, location_type: str) -> str:
 
 
 def get_position(address: str) -> (float, float):
-    gmaps = googlemaps.Client(key='AIzaSyBkggWLN5cIFpGJ1IjNSuw7oKUHfo1U5HY')
+    gmaps = googlemaps.Client(key='AIzaSyCt1LvRCpDQAdK_J3hwse0QRzLv8UCqlL4')
 
     response = gmaps.geocode(address)
 
