@@ -21,12 +21,12 @@
         </div>
 
         <div class="mid">
-            <h1>Where We Stopping?</h1>
+            <h1>Where would you like to go?</h1>
 
             <form action="{% url 'create_room' %}" method="post">
                 {% csrf_token %}
                 {{ room_creation_form }}
-                <input class="button_2" type="submit" name="submit_join_room" value="Create room!" />
+                <input class="button_2" type="submit" name="submit_join_room" value="submit" />
             </form>
         </div>
     </body>

@@ -1,15 +1,37 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'roomsession/Results.css' %}">
     <title>Results</title>
 </head>
 <body>
-<p>{{ result }}</p>
-<ul>
-{% for name in names_list %}
-    <li>{{ name }}</li>
-{% endfor %}
-</ul>
+    <div class="top">
+        <img class="logo" src="{% static 'images/Logo_Assest-02_Orange' %}" alt="Logo">
+        <div class="navigation">
+            <ul class="nav_bar">
+                <li class="nav_elt">
+                    <a>Help</a>
+                </li>
+                <li class="nav_elt">
+                    <a>About</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="mid">
+        <img class="map" src="{% static 'images/map.png' %}" alt="map">
+
+        <p class="welcome"><strong>Meet Ya There!</strong>
+        <p class="address">{{ result }}</p>
+
+        <p class="welcome"><strong class="test">The ideal location for</strong></p>
+        <ul class="names">
+            {% for name in names_list %}
+            <li class="name">{{ name }}</li>
+            {% endfor %}
+        </ul>
+    </div>
 </body>
 </html>
