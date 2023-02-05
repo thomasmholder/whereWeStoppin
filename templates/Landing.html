@@ -32,13 +32,13 @@
             </a>
 
             <div class="separation">
-                -----------  got a code?  -----------
+                --------------------  got a code?  --------------------
             </div>
 
             <form action="{% url 'join_room' %}" method="post">
                 {% csrf_token %}
                 {{ form }}
-                <input class="button_2" type="submit" name="submit_join_room" value="join room" />
+                <input class="button_2" type="submit" name="submit_join_room" value="join" />
             </form>
 
             </div>

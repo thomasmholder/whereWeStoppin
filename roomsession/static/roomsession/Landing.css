@@ -15,8 +15,9 @@ body {
 }
 
 .logo {
-    height: 100px;
+    height: 120px;
     width: auto;
+    padding-left: 70px;
 }
 
 .top{
@@ -35,7 +36,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-around;
-
 }
 
 .nav_bar{
@@ -46,19 +46,20 @@ body {
     list-style: none;
     text-decoration: none;
     position: absolute;
-    right: 4%;
+    right: 70px;
 }
 
 .nav_elt{
     margin-left: 40px;
-    font-size: 20px;
     cursor: pointer;
     color: white;
+    font-size: 26px;
+    font-weight: 600;
 }
 
 .mid{
     padding-left: 30.5%;
-    margin-top:209px;
+    margin-top:110px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -67,7 +68,7 @@ body {
 .big_logo {
     width: 49%;
     height: auto;
-    padding-bottom:20px;
+    padding-bottom:50px;
 }
 
 .button {
@@ -88,7 +89,7 @@ body {
 
 .separation{
     color: white;
-    padding: 25px 8%;
+    padding: 35px 0px 25px 10px;
     font-weight: 700;
     font-size:32px;
 }
@@ -99,8 +100,8 @@ body {
     color: #EF7417;
     border: white;
     border-radius: 100px;
-    width: 30%;
-    height: 91px;
+    width: 250px;
+    height: 70px;
     font-size: 32px;
     font-weight: 600;
 }
