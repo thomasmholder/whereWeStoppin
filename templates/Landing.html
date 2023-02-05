@@ -3,18 +3,45 @@
 <html>
     <head>
         <link rel="stylesheet" href="{% static 'roomsession/Landing.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Hind:wght@300;600&display=swap" rel="stylesheet">
     </head>
     <body>
+        <video id="background-video" autoplay loop muted poster="{% static 'images/background.png' %}">
+            <source src="{% static 'images/Website_BG.mp4' %}" type="video/mp4">
+        </video>
 
-        <h1>Where We Stopping?</h1>
-        <a href = {% url 'create_room' %}>
-            <button>Create a room!</button>
-        </a>
+        <div class="top">
+            <img class="logo" src="{% static 'images/Logo_Assest-02.png' %}" alt="Logo">
+            <div class="navigation">
+                <ul class="nav_bar">
+                    <li class="nav_elt">
+                        <a>Help</a>
+                    </li>
+                    <li class="nav_elt">
+                        <a>About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="mid">
+            <img class="big_logo" src="{% static 'images/Logo_Assest_WordMark.png' %}" alt="Logo">
 
-        <form action="{% url 'join_room' %}" method="post">
-            {% csrf_token %}
-            {{ form }}
-            <input type="submit" name="submit_join_room" value="Join room!" />
-        </form>
+
+            <a href = "{% url 'create_room' %}">
+                <button class="button">find your fun</button>
+            </a>
+
+            <div class="separation">
+                -----------  got a code?  -----------
+            </div>
+
+            <form action="{% url 'join_room' %}" method="post">
+                {% csrf_token %}
+                {{ form }}
+                <input class="button_2" type="submit" name="submit_join_room" value="join room" />
+            </form>
+
+            </div>
+
     </body>
 </html>
