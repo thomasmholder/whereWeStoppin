@@ -5,8 +5,23 @@ import django.db.models
 import roomsession.models as models
 import uuid
 
-RESTAURANT_PREFERENCES = ['American', 'Mexican', 'Chinese', 'Italian', 'Thai',
-                          'Pizza', 'Indian', 'Korean', 'Japanese', 'Fast Food']
+# RESTAURANT_PREFERENCES = ['American', 'Mexican', 'Chinese', 'Italian', 'Thai',
+#                          'Pizza', 'Indian', 'Korean', 'Japanese', 'Fast Food']
+
+RESTAURANT_PREFERENCES = [
+    ("AM", "American"),
+    ("MX", "Mexican"),
+    ("CH", "Chinese"),
+    ("TH", "Thai"),
+    ("IN", "Indian"),
+    ("FF", "Fast Food"),
+    ("IT", "Italian"),
+    ("PI", "Pizza"),
+    ("AF", "African"),
+    ("KR", "Korean"),
+    ("JP", "Japanese")
+]
+
 
 def create_room(room_type: str = None) -> str:
     new_room_id = str(uuid.uuid4())[0:8]
@@ -21,10 +36,10 @@ def create_room(room_type: str = None) -> str:
 
 def create_user_entry(room_id: str, user_name: str, user_latitude: float, user_longitude: float,
                       user_preferences: str) -> None:
-    new_user = models.UserEntry(room=room_id, name=user_name, latitude=user_latitude, longitude=user_longitude,
+    user_room = models.RoomEntry.objects.get(room_id=room_id)
+    new_user = models.UserEntry(room=user_room, name=user_name, latitude=user_latitude, longitude=user_longitude,
                                 preference_list=user_preferences)
     new_user.save()
-    user_room = models.RoomEntry.objects.get(room_id=room_id)
     user_room.result_number += 1
     user_room.save()
 
@@ -61,13 +76,37 @@ def get_midpoint(room_id: str) -> (float, float):
         latitudes.append(person.latitude)
         longitudes.append(person.longitude)
 
-    midpoint_lat = ((max(latitudes) - min(latitudes))/2) + min(latitudes)
-    midpoint_long = ((max(longitudes) - min(longitudes))/2) + min(longitudes)
+    midpoint_lat = ((max(latitudes) - min(latitudes)) / 2) + min(latitudes)
+    midpoint_long = ((max(longitudes) - min(longitudes)) / 2) + min(longitudes)
 
     return midpoint_lat, midpoint_long
 
 
-def da_algorithm(latitude: float, longitude: float, location_type: str) -> dict:
+def get_ideal_location_type(room_id: str) -> str:
+    try:
+        people = models.UserEntry.objects.all().filter(room_id=room_id)
+    except models.UserEntry.DoesNotExist:
+        return ""
+
+    prefs_list = ""
+
+    for person in people:
+        prefs_list += person.preference_list
+
+    prefs_dict = {}
+    for pref in RESTAURANT_PREFERENCES:
+        prefs_dict[pref[0]] = prefs_list.count(pref[0])
+
+    ideal_pref = max(prefs_dict)
+    ideal_loc = " restaurant"
+    for i in RESTAURANT_PREFERENCES:
+        if i[0] == ideal_pref:
+            ideal_loc = i[1] + ideal_loc
+
+    return ideal_loc
+
+
+def da_algorithm(latitude: float, longitude: float, location_type: str) -> str:
     gmaps = googlemaps.Client(key='AIzaSyBkggWLN5cIFpGJ1IjNSuw7oKUHfo1U5HY')
 
     response = gmaps.places_nearby(
@@ -76,4 +115,7 @@ def da_algorithm(latitude: float, longitude: float, location_type: str) -> dict:
         rank_by="distance"
     )
 
-    return response['results'][0]['name']
+    try:
+        return response['results'][0]['name']
+    except IndexError:
+        return "No suitable location found"
