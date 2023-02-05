@@ -34,13 +34,13 @@ def create_room(room_type: str = None) -> str:
         return create_room()
 
 
-def create_user_entry(room_id: str, user_name: str, user_latitude: float, user_longitude: float,
+def create_user_entry(room_id: str, user_name: str, user_address: str,
                       user_preferences: str) -> None:
+    user_latitude, user_longitude = get_position(user_address)
     user_room = models.RoomEntry.objects.get(room_id=room_id)
     new_user = models.UserEntry(room=user_room, name=user_name, latitude=user_latitude, longitude=user_longitude,
                                 preference_list=user_preferences)
     new_user.save()
-    user_room.result_number += 1
     user_room.save()
 
 
@@ -119,3 +119,11 @@ def da_algorithm(latitude: float, longitude: float, location_type: str) -> str:
         return response['results'][0]['name']
     except IndexError:
         return "No suitable location found"
+
+
+def get_position(address: str) -> (float, float):
+    gmaps = googlemaps.Client(key='AIzaSyBkggWLN5cIFpGJ1IjNSuw7oKUHfo1U5HY')
+
+    response = gmaps.geocode(address)
+
+    return response[0]['geometry']['location']['lat'], response[0]['geometry']['location']['lng']

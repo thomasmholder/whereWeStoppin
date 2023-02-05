@@ -15,8 +15,7 @@ class RoomCreationForm(forms.Form):
 
 class UserCreationForm(forms.Form):
     user_name = forms.CharField(label="Name")
-    latitude = forms.FloatField(label="Latitude")
-    longitude = forms.FloatField(label="Longitude")
+    address = forms.CharField(label="Address")
     preferences = forms.CharField(widget=forms.CheckboxSelectMultiple(choices=utils.utils.RESTAURANT_PREFERENCES))
     print(preferences.__str__())
 
