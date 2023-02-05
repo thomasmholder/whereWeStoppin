@@ -76,6 +76,9 @@ def access_room_results(request, room_id):
         lat, long = utils.utils.get_midpoint(room_id)
         room.result_address = utils.utils.da_algorithm(lat, long, ideal_location)
         room.result_number = roomsession.models.UserEntry.objects.all().filter(room=room_id).count()
+
+        # Map fetch goes here
+
         room.save()
 
     return render(request, "Results.html", {'result': room.result_address, 'num_people': str(room.result_number)})
