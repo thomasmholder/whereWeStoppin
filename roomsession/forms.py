@@ -10,8 +10,7 @@ class JoinRoomForm(forms.Form):
 
 
 class RoomCreationForm(forms.Form):
-    event_type = forms.CharField(label="Where would you like to go",
-                                 widget=forms.RadioSelect(choices=RoomEntry.ROOM_TYPES))
+    event_type = forms.CharField(label="", widget=forms.RadioSelect(choices=RoomEntry.ROOM_TYPES))
 
 
 class UserCreationForm(forms.Form):

@@ -47,11 +47,16 @@ body {
 }
 
 .mid{
-    padding-left: 30.5%;
-    margin-top:110px;
+    padding-left: 27.5%;
+    margin-top:140px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    font-size: 32px;
+}
+
+.button_div{
+    padding-top: 50px;
 }
 
 .button_2 {
@@ -60,7 +65,7 @@ body {
     color: white;
     border: #EF7417;
     border-radius: 100px;
-    width: 250px;
+    width: 350px;
     height: 70px;
     font-size: 32px;
     font-weight: 600;
@@ -68,4 +73,14 @@ body {
 
 .button_2:hover {
     cursor: pointer;
+}
+
+#id_event_type{
+    line-height: 60px;
+}
+
+#id_event_type label input{
+    margin-right: 35px;
+    cursor: pointer;
+    background-color: #EF7417;
 }
