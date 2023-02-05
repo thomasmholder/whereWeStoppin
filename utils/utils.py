@@ -116,7 +116,7 @@ def da_algorithm(latitude: float, longitude: float, location_type: str) -> str:
     )
 
     try:
-        return response['results'][0]['name']
+        return response['results'][0]['name'] + ", " + response['results'][0]['vicinity']
     except IndexError:
         return "No suitable location found"
 
