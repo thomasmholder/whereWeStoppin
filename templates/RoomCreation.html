@@ -6,12 +6,28 @@
         <title>Room Creation</title>
     </head>
     <body>
-        <h1>Where We Stopping?</h1>
+        <div class="top">
+            <img class="logo" src="{% static 'images/Logo_Assest-02_Orange' %}" alt="Logo">
+            <div class="navigation">
+                <ul class="nav_bar">
+                    <li class="nav_elt">
+                        <a>Help</a>
+                    </li>
+                    <li class="nav_elt">
+                        <a>About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
-        <form action="{% url 'create_room' %}" method="post">
-            {% csrf_token %}
-            {{ room_creation_form }}
-            <input type="submit" name="submit_join_room" value="Create room!" />
-        </form>
+        <div class="mid">
+            <h1>Where We Stopping?</h1>
+
+            <form action="{% url 'create_room' %}" method="post">
+                {% csrf_token %}
+                {{ room_creation_form }}
+                <input class="button_2" type="submit" name="submit_join_room" value="Create room!" />
+            </form>
+        </div>
     </body>
 </html>
