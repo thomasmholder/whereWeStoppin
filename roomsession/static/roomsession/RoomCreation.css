@@ -17,7 +17,6 @@ body {
     top: 100px;
     display: flex;
     align-items: center;
-
     z-index: 999;
 }
 
@@ -55,10 +54,6 @@ body {
     font-size: 32px;
 }
 
-.button_div{
-    padding-top: 50px;
-}
-
 .button_2 {
     background-color: #EF7417;
     text-align: center;
@@ -69,6 +64,7 @@ body {
     height: 70px;
     font-size: 32px;
     font-weight: 600;
+    margin-top: 50px;
 }
 
 .button_2:hover {

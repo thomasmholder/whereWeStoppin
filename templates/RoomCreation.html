@@ -26,9 +26,7 @@
             <form action="{% url 'create_room' %}" method="post">
                 {% csrf_token %}
                 {{ room_creation_form }}
-                <div class="button_div">
-                    <input class="button_2" type="submit" name="submit_join_room" value="submit" />
-                </div>
+                <input class="button_2" type="submit" name="submit_join_room" value="submit" />
             </form>
         </div>
     </body>

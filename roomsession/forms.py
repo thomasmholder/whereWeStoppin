@@ -14,8 +14,8 @@ class RoomCreationForm(forms.Form):
 
 
 class UserCreationForm(forms.Form):
-    user_name = forms.CharField(label="Name")
-    address = forms.CharField(label="Address")
+    user_name = forms.CharField(label="Name", widget=forms.TextInput(attrs={'style': ''}))
+    address = forms.CharField(label="Street Address", widget=forms.TextInput(attrs={'style': ''}))
     preferences = forms.CharField(widget=forms.CheckboxSelectMultiple(choices=utils.utils.RESTAURANT_PREFERENCES))
     print(preferences.__str__())
 

@@ -20,10 +20,15 @@
                 </ul>
             </div>
         </div>
-        <form action="{% url "access_room" room_id=room_id %}" method="post">
-            {% csrf_token %}
-            {{ user_creation_form }}
-            <input type="submit" name="submit_enter_preferences" value="submit" />
-        </form>
+
+        <div class="mid">
+            <form action="{% url "access_room" room_id=room_id %}" method="post">
+                <div class="test">
+                    {% csrf_token %}
+                    {{ user_creation_form }}
+                </div>
+                <input class="button_2" type="submit" name="submit_enter_preferences" value="submit" />
+            </form>
+        </div>
     </body>
 </html>
