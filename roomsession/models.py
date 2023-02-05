@@ -4,7 +4,11 @@ from django.db import models
 # Create your models here.
 class RoomEntry(models.Model):
     ROOM_TYPES = [
-        ('RS', 'Restaurant')
+        ('RS', 'Restaurant'),
+        ('PK', 'Park'),
+        ('PI', 'Point of interest'),
+        ('AQ', 'Aquarium'),
+        ('TP', 'Theme Park')
     ]
     room_id = models.CharField(max_length=8, primary_key=True)
     room_type = models.CharField(max_length=2, choices=ROOM_TYPES)

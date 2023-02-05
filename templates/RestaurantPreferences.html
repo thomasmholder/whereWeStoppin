@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    {{ room_id }}
-    {{ trip_type }}
-</head>
-<body>
-
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Enter your preferences</title>
+    </head>
+    <body>
+        <form action="{% url "access_room" room_id=room_id %}" method="post">
+            {% csrf_token %}
+            {{ user_creation_form }}
+            <input type="submit" name="submit_enter_preferences" value="Create room!" />
+        </form>
+    </body>
 </html>
