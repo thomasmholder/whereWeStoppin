@@ -18,5 +18,4 @@ class UserCreationForm(forms.Form):
     user_name = forms.CharField(label="Name")
     address = forms.CharField(label="Address")
     preferences = forms.CharField(widget=forms.CheckboxSelectMultiple(choices=utils.utils.RESTAURANT_PREFERENCES))
-    print(preferences.__str__())
 

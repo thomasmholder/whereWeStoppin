@@ -67,6 +67,7 @@ def access_room(request, room_id):
 
 
 def access_room_results(request, room_id):
+    names_list = []
     try:
         room = roomsession.models.RoomEntry.objects.get(room_id=room_id)
     except django.db.models.Model.DoesNotExist:
@@ -81,4 +82,8 @@ def access_room_results(request, room_id):
 
         room.save()
 
-    return render(request, "Results.html", {'result': room.result_address, 'num_people': str(room.result_number)})
+    for person in roomsession.models.UserEntry.objects.all().filter(room_id=room_id):
+        names_list.append(person.name)
+
+    return render(request, "Results.html", {'result': room.result_address, 'num_people': str(room.result_number),
+                                            'names_list': names_list})
