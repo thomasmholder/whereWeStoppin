@@ -1,7 +1,6 @@
 body {
     font-family: 'Hind', sans-serif;
     color: #EF7417;
-    font-weight: 600;
 }
 
 .logo {
@@ -49,5 +48,45 @@ body {
 .map{
     position: absolute;
     width: 1020px;
+    top: 250px;
     left: 100px;
+}
+
+.mid{
+    padding-left: 27.5%;
+    margin-top:220px;
+    margin-left:35%;
+    font-size: 32px;
+    text-align: Left;
+    margin-right: 200px;
+}
+
+.names{
+    margin-top: 0px;
+    list-style: none;
+    padding-top: 0px;
+    padding-right: 30px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.name{
+    padding-right: 50px;
+    margin-right: 50px;
+    margin-left: 0px;
+    padding-left: 0px;
+    padding-top: 15px;
+}
+
+.welcome{
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+.address{
+    margin-top:0px;
+    margin-bottom: 0px;
+    padding-bottom: 30px;
+    padding-top: 15px;
 }
