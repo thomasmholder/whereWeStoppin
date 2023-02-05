@@ -50,8 +50,8 @@ def access_room(request, room_id):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            utils.utils.create_user_entry(room_id, form.cleaned_data['user_name'], form.cleaned_data['latitude'],
-                                          form.cleaned_data['longitude'], form.cleaned_data['preferences'])
+            utils.utils.create_user_entry(room_id, form.cleaned_data['user_name'], form.cleaned_data['address'],
+                                          form.cleaned_data['preferences'])
             return HttpResponseRedirect(f"{room_id}/results")
     else:
         try:
